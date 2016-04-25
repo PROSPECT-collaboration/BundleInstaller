@@ -4,10 +4,10 @@
 # base "applications" directory; packes will be installed in subdirectory of this
 : "${APP_DIR:?Need to set APP_DIR for install location base}"
 # HDF5
-: "${HDF5_INSTALL?Need to set HDF5_INSTALL directory to your cmake-based HDF5 install}"
+: "${HDF5_INSTALL:?Need to set HDF5_INSTALL directory to your cmake-based HDF5 install}"
 export HDF5_DIR=${HDF5_INSTALL}/share/cmake/
 # ROOT
-: "${ROOTSYS?ROOTSYS not set... ROOT not installed and configured?}"
+: "${ROOTSYS:?ROOTSYS not set... ROOT not installed and configured?}"
 
 
 # determine version tag from git repository containing this script
