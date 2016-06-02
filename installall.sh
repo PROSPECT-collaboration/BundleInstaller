@@ -26,9 +26,9 @@ cd $INSTALL_DIR
 
 # clone correct repository versions --- update tags here!
 echo "Dowloading code repositories"
-git clone --branch 1.7.1 https://github.com/PROSPECT-collaboration/PROSPECT-G4.git
-git clone --branch v3.1.2 https://github.com/mpmendenhall/MPMUtils.git
-git clone --branch v2.2 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
+git clone --branch v1.8 https://github.com/PROSPECT-collaboration/PROSPECT-G4.git
+git clone --branch v3.1.3 https://github.com/mpmendenhall/MPMUtils.git
+git clone --branch v3.0 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
 git clone --branch v1r0 https://github.com/PROSPECT-collaboration/OscSens_CovMatrix.git
 
 ################
