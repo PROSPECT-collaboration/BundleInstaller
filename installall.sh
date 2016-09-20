@@ -29,31 +29,39 @@ echo "Dowloading code repositories"
 git clone --branch v1.10 https://github.com/PROSPECT-collaboration/PROSPECT-G4.git
 git clone --branch v3.2.1 https://github.com/mpmendenhall/MPMUtils.git
 git clone --branch v3.2.0 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
-git clone --branch v2r1 https://github.com/PROSPECT-collaboration/OscSens_CovMatrix.git
+git clone --branch v2r2 https://github.com/PROSPECT-collaboration/OscSens_CovMatrix.git
 
 ################
 # build packages
 
-echo "Building PROSPECT-G4"
+printf "\nBuilding PROSPECT-G4\n"
 export PG4_CODE=${INSTALL_DIR}/PROSPECT-G4/
 export PG4_BUILD=${INSTALL_DIR}/PG4_build/
 mkdir $PG4_BUILD; cd $PG4_BUILD
 cmake ${PG4_CODE} -DWITH_HDF5=ON
 make -j`nproc`
 
-echo "Building MPMUtils dependency"
+printf "\n--------------------------\nBuilding MPMUtils dependency\n"
 export MPMUTILS=${INSTALL_DIR}/MPMUtils/
 cd $MPMUTILS
 make rootutils -j`nproc`
 
-echo "Building MPM Analysis"
+printf "\n------------------------\nBuilding MPM Analysis\n"
 export MPM_P2X_ANALYSIS=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
 cd $MPM_P2X_ANALYSIS/Analysis
 make -j`nproc`
-echo "Building PulseCruncher"
+printf "\n------------------------\nBuilding PulseCruncher\n"
 cd ../../PulseCruncher
 make -j`nproc`
 
-cd $INSTALL_DIR
+printf "\n------------------------\nBuilding OscSens_CovMatrix Package\n"
+export OSCSENS_COVMATRIX_PACKAGE=$INSTALL_DIR/OscSens_CovMatrix/
+cd $OSCSENS_COVMATRIX_PACKAGE/OscSensFitterCC/
+make 
+printf "\n--------------------------\nBuilding Executable 'estimateSensitivity'\n"
+make estimateSensitivity
 
+
+cd $INSTALL_DIR
+printf "\n\n---- Bundle Install Complete! ------\n\n"
 
