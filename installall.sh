@@ -34,7 +34,7 @@ git clone --branch v2r2 https://github.com/PROSPECT-collaboration/OscSens_CovMat
 ################
 # build packages
 
-printf "\nBuilding PROSPECT-G4\n"
+printf "\n-------------------------\nBuilding PROSPECT-G4\n"
 export PG4_CODE=${INSTALL_DIR}/PROSPECT-G4/
 export PG4_BUILD=${INSTALL_DIR}/PG4_build/
 mkdir $PG4_BUILD; cd $PG4_BUILD
@@ -46,15 +46,15 @@ export MPMUTILS=${INSTALL_DIR}/MPMUtils/
 cd $MPMUTILS
 make rootutils -j`nproc`
 
-printf "\n------------------------\nBuilding MPM Analysis\n"
+printf "\n--------------------------\nBuilding MPM Analysis\n"
 export MPM_P2X_ANALYSIS=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
 cd $MPM_P2X_ANALYSIS/Analysis
 make -j`nproc`
-printf "\n------------------------\nBuilding PulseCruncher\n"
+printf "\n--------------------------\nBuilding PulseCruncher\n"
 cd ../../PulseCruncher
 make -j`nproc`
 
-printf "\n------------------------\nBuilding OscSens_CovMatrix Package\n"
+printf "\n--------------------------\nBuilding OscSens_CovMatrix Package\n"
 export OSCSENS_COVMATRIX_PACKAGE=$INSTALL_DIR/OscSens_CovMatrix/
 cd $OSCSENS_COVMATRIX_PACKAGE/OscSensFitterCC/
 make 
