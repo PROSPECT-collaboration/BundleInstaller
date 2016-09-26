@@ -28,7 +28,7 @@ cd $INSTALL_DIR
 echo "Dowloading code repositories"
 git clone --branch v1.10 https://github.com/PROSPECT-collaboration/PROSPECT-G4.git
 git clone --branch v3.2.1 https://github.com/mpmendenhall/MPMUtils.git
-git clone --branch v3.2.0 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
+git clone --branch v3.3.0 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
 git clone --branch v2r2 https://github.com/PROSPECT-collaboration/OscSens_CovMatrix.git
 
 ################
@@ -50,6 +50,9 @@ printf "\n--------------------------\nBuilding MPM Analysis\n"
 export MPM_P2X_ANALYSIS=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
 cd $MPM_P2X_ANALYSIS/Analysis
 make -j`nproc`
+printf "\n--------------------------\nBuilding h5 -> root converters\n"
+cd ../Examples/
+make converters -j`nproc`
 printf "\n--------------------------\nBuilding PulseCruncher\n"
 cd ../../PulseCruncher
 make -j`nproc`
