@@ -6,20 +6,21 @@
 #         git cloning
 #
 GIT_CLONE_PREFIX="https://github.com/"
-while [[ $# -gt 1 ]]
+while [[ $# -gt 0 ]]
 do
-    key="$1"
-    case $key in
-        -ssh)
-            printf "Using SSH for git cloning\n"
-            GIT_CLONE_PREFIX="git@github.com:"
-            shift # past argument
-        ;;
-        *) 
-            # unknown option
-        ;;
-    esac
-    shift # past argument or value
+key="$1"
+
+case $key in
+    -ssh)
+    printf "Using SSH for git cloning\n"
+    GIT_CLONE_PREFIX="git@github.com:"
+    ;;
+    *) 
+    # unknown option
+    echo "Unknown option $key"
+    ;;
+esac
+shift # to next argument
 done
 
 # check required environment variables
