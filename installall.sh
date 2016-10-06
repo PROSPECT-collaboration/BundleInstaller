@@ -1,5 +1,27 @@
 #!/bin/bash
 
+##########################################
+# command line arguments (optional):
+# -ssh    use SSH instead of HTTPS for
+#         git cloning
+#
+GIT_CLONE_PREFIX="https://github.com/"
+while [[ $# -gt 1 ]]
+do
+    key="$1"
+    case $key in
+        -ssh)
+            printf "Using SSH for git cloning\n"
+            GIT_CLONE_PREFIX="git@github.com:"
+            shift # past argument
+        ;;
+        *) 
+            # unknown option
+        ;;
+    esac
+    shift # past argument or value
+done
+
 # check required environment variables
 # base "applications" directory; packes will be installed in subdirectory of this
 : "${APP_DIR:?Need to set APP_DIR for install location base}"
@@ -25,11 +47,10 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # clone correct repository versions --- update tags here!
-echo "Dowloading code repositories"
-git clone --branch v1.10 https://github.com/PROSPECT-collaboration/PROSPECT-G4.git
-git clone --branch v3.2.1 https://github.com/mpmendenhall/MPMUtils.git
-git clone --branch v3.3.0 https://github.com/PROSPECT-collaboration/PROSPECT2x_Analysis.git
-git clone --branch v2r2 https://github.com/PROSPECT-collaboration/OscSens_CovMatrix.git
+git clone --branch v1.10.1 ${GIT_CLONE_PREFIX}PROSPECT-collaboration/PROSPECT-G4.git
+git clone --branch v3.2.1 ${GIT_CLONE_PREFIX}mpmendenhall/MPMUtils.git
+git clone --branch v3.3.0 ${GIT_CLONE_PREFIX}PROSPECT-collaboration/PROSPECT2x_Analysis.git
+git clone --branch v2r2 ${GIT_CLONE_PREFIX}PROSPECT-collaboration/OscSens_CovMatrix.git
 
 ################
 # build packages
@@ -47,8 +68,8 @@ cd $MPMUTILS
 make rootutils -j`nproc`
 
 printf "\n--------------------------\nBuilding MPM Analysis\n"
-export MPM_P2X_ANALYSIS=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
-cd $MPM_P2X_ANALYSIS/Analysis
+export P2X_ANALYSIS_CODE=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
+cd $P2X_ANALYSIS_CODE/Analysis
 make -j`nproc`
 printf "\n--------------------------\nBuilding h5 -> root converters\n"
 cd ../Examples/
