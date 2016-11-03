@@ -49,8 +49,8 @@ cd $INSTALL_DIR
 
 # set tags here for versions to clone:
 PG4_VERSION=v1.10.2
-MPM_VERSION=v3.3
-P2X_VERSION=v4.0
+MPM_VERSION=v3.3.1
+P2X_VERSION=v4.0.1
 OSC_VERSION=v2r2
 
 # clone the specified versions
