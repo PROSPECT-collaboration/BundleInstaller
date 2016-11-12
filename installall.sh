@@ -49,26 +49,22 @@ cd $INSTALL_DIR
 
 # set tags here for versions to clone:
 PG4_VERSION=v1.10.2
-MPM_VERSION=v3.3.1
-P2X_VERSION=v4.0.1
+P2X_VERSION=v4.1
 OSC_VERSION=v2r2
 
 # clone the specified versions
 git clone --branch ${PG4_VERSION} ${GIT_CLONE_PREFIX}PROSPECT-collaboration/PROSPECT-G4.git
-git clone --branch ${MPM_VERSION} ${GIT_CLONE_PREFIX}mpmendenhall/MPMUtils.git
 git clone --branch ${P2X_VERSION} ${GIT_CLONE_PREFIX}PROSPECT-collaboration/PROSPECT2x_Analysis.git
 git clone --branch ${OSC_VERSION} ${GIT_CLONE_PREFIX}PROSPECT-collaboration/OscSens_CovMatrix.git
 
 # cloned install directories
 export PG4_CODE=${INSTALL_DIR}/PROSPECT-G4/
-export MPMUTILS=${INSTALL_DIR}/MPMUtils/
 export P2X_ANALYSIS_CODE=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
 export OSCSENS_COVMATRIX_PACKAGE=$INSTALL_DIR/OscSens_CovMatrix/
 
 # older versions of git do not check out tags, but only branches.
 # explicitly check out the tag here, in case it failed before.
 cd $PG4_CODE; git checkout tags/$PG4_VERSION
-cd $MPMUTILS; git checkout tags/$MPM_VERSION
 cd $P2X_ANALYSIS_CODE; git checkout tags/$P2X_VERSION
 cd $OSCSENS_COVMATRIX_PACKAGE; git checkout tags/$OSC_VERSION
 
@@ -80,10 +76,6 @@ export PG4_BUILD=${INSTALL_DIR}/PG4_build/
 mkdir $PG4_BUILD; cd $PG4_BUILD
 cmake ${PG4_CODE} -DWITH_HDF5=ON
 make -j`nproc`
-
-printf "\n--------------------------\nBuilding MPMUtils dependency\n"
-cd $MPMUTILS
-make rootutils -j`nproc`
 
 printf "\n--------------------------\nBuilding MPM Analysis\n"
 cd $P2X_ANALYSIS_CODE/Analysis
