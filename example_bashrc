@@ -22,7 +22,7 @@ export CXXFLAGS=-I${APP_DIR}/include/ $CXXFLAGS
 source ${APP_DIR}/root6-bld/bin/thisroot.sh
 
 # Geant4 install
-source ${APP_DIR}/geant4.10.02.p01-build/bin/geant4.sh
+source ${APP_DIR}/geant4.10.03-build/bin/geant4.sh
 
 # for PROSPECT muon shower simulations compile and run
 export CRYHOME=${APP_DIR}/cry_v1.7/
