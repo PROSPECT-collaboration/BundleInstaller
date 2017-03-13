@@ -48,8 +48,8 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # set tags here for versions to clone:
-PG4_VERSION=v1.11.2
-P2X_VERSION=v5.3
+PG4_VERSION=v1.13
+P2X_VERSION=v5.4.3
 OSC_VERSION=v2r2
 
 # clone the specified versions
@@ -77,7 +77,7 @@ mkdir $PG4_BUILD; cd $PG4_BUILD
 cmake ${PG4_CODE} -DWITH_HDF5=ON
 make -j`nproc`
 
-printf "\n--------------------------\nBuilding MPM Analysis\n"
+printf "\n--------------------------\nBuilding P2xAnalysis\n"
 cd $P2X_ANALYSIS_CODE/Analysis
 make -j`nproc`
 printf "\n--------------------------\nBuilding h5 -> root converters\n"
