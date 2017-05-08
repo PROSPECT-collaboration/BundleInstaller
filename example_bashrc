@@ -28,11 +28,6 @@ source ${APP_DIR}/geant4.10.03-build/bin/geant4.sh
 export CRYHOME=${APP_DIR}/cry_v1.7/
 export CRYDATA=${CRYHOME}/data
 
-# HDF5 libraries
-export WITH_HDF5=true
-export HDF5_INSTALL=${APP_DIR}/HDF5_1.10.0-patch1/
-export HDF5_DIR=${HDF5_INSTALL}/share/cmake/
-
 # PROSPECT analysis toolchain using BundleInstaller
 export PBUNDLE=${APP_DIR}/PROSPECT-Bundle-v7/
 export P2X_ANALYSIS_CODE=${PBUNDLE}/PROSPECT2x_Analysis/cpp/
