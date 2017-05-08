@@ -44,7 +44,7 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # set tags here for versions to clone:
-PG4_VERSION=v1.4.1
+PG4_VERSION=v1.14.1
 P2X_VERSION=v6.1
 OSC_VERSION=v2r2
 
