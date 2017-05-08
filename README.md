@@ -6,7 +6,6 @@ Git versioning of the script itself provides the method to distinctly identify a
 
 The installall.sh bash script expects some environment variables to be set to indicate install location and external dependencies:
 APP_DIR directory in which PROSPECT-Bundle-[version]/ will be installed
-HDF5_INSTALL location of HDF5 install; DocDB 600 includes instructions on setting up HDF5
 ROOTSYS indicating your ROOT(6) install, which should be set by running the thisroot.sh setup script that comes with ROOT.
 
 Modify the script under the "# set tags here ..." line to update the code versions downloaded.

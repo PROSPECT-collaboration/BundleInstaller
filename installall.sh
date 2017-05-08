@@ -26,12 +26,8 @@ done
 # check required environment variables
 # base "applications" directory; packes will be installed in subdirectory of this
 : "${APP_DIR:?Need to set APP_DIR for install location base}"
-# HDF5
-: "${HDF5_INSTALL:?Need to set HDF5_INSTALL directory to your cmake-based HDF5 install}"
-export HDF5_DIR=${HDF5_INSTALL}/share/cmake/
 # ROOT
 : "${ROOTSYS:?ROOTSYS not set... ROOT not installed and configured?}"
-
 
 # determine version tag from git repository containing this script
 VERSION_TAG="$(git describe --tags)"
@@ -48,8 +44,8 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # set tags here for versions to clone:
-PG4_VERSION=v1.13
-P2X_VERSION=v5.4.3
+PG4_VERSION=v1.4.1
+P2X_VERSION=v6.1
 OSC_VERSION=v2r2
 
 # clone the specified versions
