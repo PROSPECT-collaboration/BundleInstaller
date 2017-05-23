@@ -44,8 +44,8 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # set tags here for versions to clone:
-PG4_VERSION=v1.14.1
-P2X_VERSION=v6.1
+PG4_VERSION=v2.0
+P2X_VERSION=v7.0
 OSC_VERSION=v2r2
 
 # clone the specified versions
@@ -70,7 +70,7 @@ cd $OSCSENS_COVMATRIX_PACKAGE; git checkout tags/$OSC_VERSION
 printf "\n-------------------------\nBuilding PROSPECT-G4\n"
 export PG4_BUILD=${INSTALL_DIR}/PG4_build/
 mkdir $PG4_BUILD; cd $PG4_BUILD
-cmake ${PG4_CODE} -DWITH_HDF5=ON
+cmake ${PG4_CODE}
 make -j`nproc`
 
 printf "\n--------------------------\nBuilding P2xAnalysis\n"

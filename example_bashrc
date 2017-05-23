@@ -29,7 +29,7 @@ export CRYHOME=${APP_DIR}/cry_v1.7/
 export CRYDATA=${CRYHOME}/data
 
 # PROSPECT analysis toolchain using BundleInstaller
-export PBUNDLE=${APP_DIR}/PROSPECT-Bundle-v7/
+export PBUNDLE=${APP_DIR}/PROSPECT-Bundle-v12/
 export P2X_ANALYSIS_CODE=${PBUNDLE}/PROSPECT2x_Analysis/cpp/
 export LD_LIBRARY_PATH=${PBUNDLE}/PROSPECT2x_Analysis/cpp/miniMPM/:${LD_LIBRARY_PATH}
 
