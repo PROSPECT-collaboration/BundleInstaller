@@ -30,7 +30,7 @@ done
 : "${ROOTSYS:?ROOTSYS not set... ROOT not installed and configured?}"
 
 # determine version tag from git repository containing this script
-VERSION_TAG="$(git describe --tags)"
+VERSION_TAG="$(git describe --tags HEAD)"
 : "${VERSION_TAG:?Failed to determine install script git version tag}"
 INSTALL_DIR=${APP_DIR}/PROSPECT-Bundle-${VERSION_TAG}
 
@@ -44,8 +44,8 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 # set tags here for versions to clone:
-PG4_VERSION=v2.0
-P2X_VERSION=v7.0
+PG4_VERSION=v2.2
+P2X_VERSION=v8.3
 OSC_VERSION=v2r2
 
 # clone the specified versions
@@ -55,7 +55,7 @@ git clone --branch ${OSC_VERSION} ${GIT_CLONE_PREFIX}PROSPECT-collaboration/OscS
 
 # cloned install directories
 export PG4_CODE=${INSTALL_DIR}/PROSPECT-G4/
-export P2X_ANALYSIS_CODE=$INSTALL_DIR/PROSPECT2x_Analysis/cpp/
+export P2X_ANALYSIS_CODE=$INSTALL_DIR/PROSPECT2x_Analysis/
 export OSCSENS_COVMATRIX_PACKAGE=$INSTALL_DIR/OscSens_CovMatrix/
 
 # older versions of git do not check out tags, but only branches.
@@ -73,14 +73,8 @@ mkdir $PG4_BUILD; cd $PG4_BUILD
 cmake ${PG4_CODE}
 make -j`nproc`
 
-printf "\n--------------------------\nBuilding P2xAnalysis\n"
-cd $P2X_ANALYSIS_CODE/Analysis
-make -j`nproc`
-printf "\n--------------------------\nBuilding h5 -> root converters\n"
-cd ../Examples/
-make converters -j`nproc`
-printf "\n--------------------------\nBuilding PulseCruncher\n"
-cd ../../PulseCruncher
+printf "\n--------------------------\nBuilding P2xAnalysis and PulseCruncher\n"
+cd $P2X_ANALYSIS_CODE/
 make -j`nproc`
 
 printf "\n--------------------------\nBuilding OscSens_CovMatrix Package\n"
